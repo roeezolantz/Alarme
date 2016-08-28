@@ -23,17 +23,28 @@ usersBL.createSoldier = function(req,res)
             _id:         req.body.soldierNumber,
             type:        req.body.type,
             commanderId: req.body.commanderNumber,
-            solders:     req.body.solders,
-            name:        req.body.name
+            solders:     req.body.soldiers,
+            name:        req.body.name,
+            homeAddress: req.body.homeAddress 
         }
-
-        // TODO: Validation
         
-        db.collection('Users').insertOne( user , function(err,result){
+        // Check whether the soldier already exist
+        db.collection('Users').find({_id : req.body.soldierNumber})
+        .toArray(function(err, docs) 
+        {
+            if (docs[0] != null){
+            res.send("Soldier " + req.body.soldierNumber + " already exist");
             db.close();
+            }
+            else
+            {
+                db.collection('Users').insertOne( user , function(err,result){
+               db.close();
+                } )
+            }
         }
+                    
         );
-    
     }
     )
 }

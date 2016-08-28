@@ -9,7 +9,7 @@ router.get('/:soldierNumber', function(req, res, next) {
     usersBL.getUserById(req, res);  
 });
 
-router.post('/sol', function(req, res, next) {
+router.post('/createSoldier', function(req, res, next) {
     usersBL.createSoldier(req,res);
 });
 
