@@ -9,11 +9,8 @@ router.get('/:soldierNumber', function(req, res, next) {
     usersBL.getUserById(req, res);  
 });
 
-router.put('/:soldierNumbers', function(req, res, next) {
-      
+router.post('/sol', function(req, res, next) {
+    usersBL.createSoldier(req,res);
 });
-
-
-
 
 module.exports = router;

@@ -15,4 +15,27 @@ usersBL.getUserById = function(req, res)
     });    
 };
 
+usersBL.createSoldier = function(req,res)
+{
+    MongoAccess.getDB(function(db)
+    {
+        var user = { 
+            _id:         req.body.soldierNumber,
+            type:        req.body.type,
+            commanderId: req.body.commanderNumber,
+            solders:     req.body.solders,
+            name:        req.body.name
+        }
+
+        // TODO: Validation
+        
+        db.collection('Users').insertOne( user , function(err,result){
+            db.close();
+        }
+        );
+    
+    }
+    )
+}
+
 module.exports = usersBL;
