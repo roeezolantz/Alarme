@@ -1,6 +1,7 @@
 package tech28.alarme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,8 @@ public class Main2Activity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(cnt, "LOL", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(cnt, EventBuilder.class);
+                startActivity(intent);
             }
         });
     }
