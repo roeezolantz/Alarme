@@ -15,4 +15,38 @@ usersBL.getUserById = function(req, res)
     });    
 };
 
+usersBL.createSoldier = function(req,res)
+{
+    MongoAccess.getDB(function(db)
+    {
+        var user = { 
+            _id:         req.body.soldierNumber,
+            type:        req.body.type,
+            commanderId: req.body.commanderNumber,
+            solders:     req.body.soldiers,
+            name:        req.body.name,
+            homeAddress: req.body.homeAddress 
+        }
+        
+        // Check whether the soldier already exist
+        db.collection('Users').find({_id : req.body.soldierNumber})
+        .toArray(function(err, docs) 
+        {
+            if (docs[0] != null){
+            res.send("Soldier " + req.body.soldierNumber + " already exist");
+            db.close();
+            }
+            else
+            {
+                db.collection('Users').insertOne( user , function(err,result){
+               db.close();
+                } )
+            }
+        }
+                    
+        );
+    }
+    )
+}
+
 module.exports = usersBL;
