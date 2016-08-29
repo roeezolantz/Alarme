@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EventBuilder"></activity>
+        <service android:name=".TimeService"/>
+
     </application>
 
 </manifest>

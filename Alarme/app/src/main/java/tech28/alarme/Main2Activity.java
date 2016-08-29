@@ -25,5 +25,7 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        startService(new Intent(this, TimeService.class));
     }
 }
