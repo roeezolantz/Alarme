@@ -50,7 +50,7 @@ eventsBL.createEvent = function(req,res)
     MongoAccess.getDB(function(db)
     {
         // Get commander's soldiers
-        db.collection(DBName).find({ commanderId: req.body.commanderNumber}, { soldiers : 1 , _id : 0})
+        db.collection('Users').find({ commanderId: req.body.commanderNumber })
             .toArray(function(err, soldiers)
             {
                 if (soldiers == null)
@@ -59,29 +59,24 @@ eventsBL.createEvent = function(req,res)
                 }
                 // In case he has more than 1
                 else
-                    {
-                        soldiers.forEach(function(soldier)
+                {
+                    soldiers.forEach(function(soldier)
+                    {                        
+                        var event = 
                         {
-                        var homeAddress = db.collection(DBName)
-                            .find({from: soldier}, {homeAddress : 1, _id : 0})
-                            .toArray(function(err,homeAddress)
-                            {
-                                var event = {
-                                    from: req.body.commanderNumber,
-                                      to: soldier,
-                                   location: homeAddress,
-                                    message: req.body.message
-                                }
+                            from:     soldier._id,
+                            to:       req.body.commanderNumber,
+                            location: soldier.homeAddress,
+                            message:  req.body.message
+                        }
 
-                                db.collection(DBName).insertOne(event, function(err,result)
-                                {
-                                    db.close();
-                                })
-                            });
-
+                        db.collection(DBName).insertOne(event, function(err,result)
+                        {
+                            db.close();
                         });
-                    }
-                
+                    });
+
+                }
             });
         });
     };   
