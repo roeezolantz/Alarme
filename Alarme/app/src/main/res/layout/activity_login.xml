@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#8C9EFF"
+    tools:context="tech28.alarme.LoginActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <!-- Login progress -->
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Hi dude, Who are you?"
+        android:textColor="@color/cardview_light_background"
+        android:id="@+id/textView"
+        android:textAlignment="textStart" />
+
+    <Spinner
+        android:id="@+id/job_dropdown"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/jobs_arrays"
+        android:prompt="@string/job_prompt"
+        android:background="@color/transparent"
+        android:popupBackground="@color/transparent"
+        android:clickable="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/container_soldier"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:id="@+id/phone"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                app:mtf_image="@drawable/fab_add"
+                android:layout_marginLeft="30dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone number"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="15sp"
+                    android:textDirection="ltr"
+                    android:focusableInTouchMode="true"/>
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:id="@+id/address"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                app:mtf_image="@drawable/fab_add"
+                android:layout_marginLeft="30dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="15sp"
+                    android:focusableInTouchMode="true"/>
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <Button
+                android:clickable="false"
+                android:id="@+id/btnAcceptSoldier"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:background="#D4E157"
+                android:text="Go on!" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_commander"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:id="@+id/phoneOfCommander"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                app:mtf_image="@drawable/fab_add"
+                android:layout_marginLeft="30dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone number"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="15sp"
+                    android:focusableInTouchMode="true"/>
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <Button
+                android:clickable="false"
+                android:id="@+id/btnAcceptCommander"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:background="#D4E157"
+                android:text="Go on!" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>
