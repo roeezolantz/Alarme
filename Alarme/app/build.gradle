@@ -35,6 +35,8 @@ dependencies {
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
     //compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
+    compile 'com.codinguser.android:contactpicker:3.0.0@aar'
+
 
 
 

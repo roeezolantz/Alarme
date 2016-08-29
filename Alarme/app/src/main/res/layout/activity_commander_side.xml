@@ -11,12 +11,30 @@
     tools:context="tech28.alarme.commander_side"
     android:orientation="vertical">
 
+    <Button
+        android:clickable="true"
+        android:id="@+id/btnAddContact"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:background="#1E88E5"
+        android:text="Add Contact" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:id="@+id/recviewContacts"
+        android:layout_marginTop="25dp" />
+
     <TextView
         android:text="Press to be alerted when your soldiers are getting to their houses"
         android:textDirection="ltr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        android:layout_marginTop="25dp" />
 
     <CheckBox
         android:text="I know that it could make cellular fees to my soldiers"
@@ -27,13 +45,13 @@
 
     <Button
         android:clickable="false"
-        android:id="@+id/btnNotifyCommander"
+        android:id="@+id/btnAcceptCommander"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:background="#1E88E5"
-        android:text="Button" />
+        android:text="I Agree" />
 
 </LinearLayout>

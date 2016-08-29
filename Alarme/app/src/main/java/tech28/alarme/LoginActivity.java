@@ -2,9 +2,13 @@ package tech28.alarme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -13,6 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.codinguser.android.contactpicker.ContactsPickerActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -24,6 +31,8 @@ import java.net.URL;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity {
+
+    final int GET_PHONE_NUMBER = 3007;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -37,13 +46,14 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSoldiersAccept;
     private Button btnCommandersAccept;
 
+    public final Context cnt = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
 
-        final Context cnt = this;
 
         soldiersInfo = (LinearLayout) findViewById(R.id.container_soldier);
         commandersInfo = (LinearLayout) findViewById(R.id.container_commander);
@@ -55,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 new usersCreatorAsyncHttpTask().execute();
                 //URI.create("http://10.56.3.220:3000/users/createSoldier").toURL();
-         }
+            }
         });
 
         dropDownChooser = (Spinner) findViewById(R.id.job_dropdown);
@@ -87,13 +97,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnCommandersAccept = (Button)findViewById(R.id.btnAcceptCommander);
+        btnCommandersAccept = (Button) findViewById(R.id.btnAcceptCommander);
         btnCommandersAccept.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cnt, EventBuilder.class);
-
-                startActivity(new Intent(cnt, commander_side.class));            }
+                startActivity(new Intent(cnt, commander_side.class));
+            }
         });
     }
 
@@ -113,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 client = (HttpURLConnection) url.openConnection();
 
                 client.setRequestMethod("POST");
-                client.setRequestProperty("Key","Value");
+                client.setRequestProperty("Key", "Value");
                 client.setDoOutput(true);
 
                 OutputStream outputPost = new BufferedOutputStream(client.getOutputStream());
@@ -123,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if(client != null) // Make sure the connection is not null.
+                if (client != null) // Make sure the connection is not null.
                     client.disconnect();
             }
 //            HttpClient httpClient = new DefaultHttpClient();
