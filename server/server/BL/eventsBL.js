@@ -32,7 +32,7 @@ eventsBL.findEventsNearMe = function(req, res)
                         "$geometry":
                         {
                             "type" : "Point",
-                            "coordinates": [ req.body.location.x , req.body.location.y ]
+                            "coordinates": [ parseFloat(req.body.x) ,parseFloat(req.body.y) ]
                         },
                         "$maxDistance" : 100,
                     }

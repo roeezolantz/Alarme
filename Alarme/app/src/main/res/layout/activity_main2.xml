@@ -10,6 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tech28.alarme.Main2Activity">
 
+    <view
+        android:id="@+id/events_recycle"
+        class="android.support.v7.widget.RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/main_menu_fab"
         android:layout_width="wrap_content"
