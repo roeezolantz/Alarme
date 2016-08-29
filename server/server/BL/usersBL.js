@@ -19,13 +19,15 @@ usersBL.createSoldier = function(req,res)
 {
     MongoAccess.getDB(function(db)
     {
+
+        var parsedHAD = JSON.parse('{"type": "Point", coordinates: ' + req.body.homeAddress + '}')
         var user = { 
             _id:         req.body.soldierNumber,
             type:        req.body.type,
             commanderId: req.body.commanderNumber,
             solders:     req.body.soldiers,
             name:        req.body.name,
-            homeAddress: req.body.homeAddress 
+            homeAddress: parsedHAD
         }
         
         // Check whether the soldier already exist
@@ -34,13 +36,12 @@ usersBL.createSoldier = function(req,res)
         {
             if (docs[0] != null){
             res.send("Soldier " + req.body.soldierNumber + " already exist");
-            db.close();
             }
             else
             {
                 db.collection('Users').insertOne( user , function(err,result){
-               db.close();
                 } )
+               db.close();
             }
         }
                     

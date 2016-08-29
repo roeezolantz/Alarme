@@ -11,5 +11,10 @@ router.post('/findEventsNearMe', function(req, res, next) {
     eventsBL.findEventsNearMe(req, res);
 });
 
+router.post('/createEvent', function(req,res,next){
+    eventsBL.createEvent(req,res);
+})
+
+
 
 module.exports = router;

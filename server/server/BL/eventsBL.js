@@ -44,4 +44,42 @@ eventsBL.findEventsNearMe = function(req, res)
   })
 };
 
+// Required info: commanderNumber, message
+eventsBL.createEvent = function(req,res)
+{
+    MongoAccess.getDB(function(db)
+    {
+        // Get commander's soldiers
+        db.collection('Users').find({ commanderId: req.body.commanderNumber })
+            .toArray(function(err, soldiers)
+            {
+                if (soldiers == null)
+                {
+                    res.send("This commander has no soldiers");
+                }
+                // In case he has more than 1
+                else
+                {
+                    soldiers.forEach(function(soldier)
+                    {                        
+                        var event = 
+                        {
+                            from:     soldier._id,
+                            to:       req.body.commanderNumber,
+                            location: soldier.homeAddress,
+                            message:  req.body.message
+                        }
+
+                        db.collection(DBName).insertOne(event, function(err,result)
+                        {
+                            db.close();
+                        });
+                    });
+
+                }
+            });
+        });
+    };   
+
+
 module.exports = eventsBL;
